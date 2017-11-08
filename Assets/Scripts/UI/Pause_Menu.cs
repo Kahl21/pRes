@@ -14,37 +14,33 @@ public class Pause_Menu : MonoBehaviour {
 	public GameObject PMenu;					//image of the Pause Menu
 	public GameObject Exit_Prompt_Menu;			//image of the Exit Game Menu
 	public Button Resume_Game;					//button to resume game
-	public Button Checkpoint_Retry;				//button used for checkpoints
+	public Button SettingButton;				//button used for settings Menu
 	public Button Restart_Level;				//button to indicate restart level
 	public Button To_MainMenu;					//button used to go back to main menu
-	public Button To_Desktop;					//button used to exit the entire game, back to desktop
 	public Button quit_yes_Button;				//buttton to show "yes" in Exit Game Menu
 	public Button quit_no_Button;				//Button to show "no" in Exit Game Menu
 
-	private GameObject player;
+    private GameObject player;
 
 	void Awake(){
 		player = GameObject.Find ("Player");
 	}
 	void Start () {
 		Button ResumeButton = Resume_Game.GetComponent<Button>();                   //Assigns the UI element to its script counterpart
-		Button CheckpointButton = Checkpoint_Retry.GetComponent<Button>();          //Assigns the UI element to its script counterpart
+		Button SettingsButton = SettingButton.GetComponent<Button>();          //Assigns the UI element to its script counterpart
 		Button RestartButton = Restart_Level.GetComponent<Button>();				//Assigns the UI element to its script counterpart
 		Button MainExitButton = To_MainMenu.GetComponent<Button>();					//Assigns the UI element to its script counterpart
-		Button DesktopExitButton = To_Desktop.GetComponent<Button>(); 				//Assigns the UI element to its script counterpart
 
-		Button QuitYesButton = quit_yes_Button.GetComponent<Button>();          //Assigns the UI element to its script counterpart
-		Button QuitNoButton = quit_no_Button.GetComponent<Button>();            //Assigns the UI element to its script counterpart
-
+        Button QuitYesButton = quit_yes_Button.GetComponent<Button>();
+        Button QuitNoButton = quit_no_Button.GetComponent<Button>();
 
 		ResumeButton.onClick.AddListener(ResumeOnClick);                    	//Resume Script
-		CheckpointButton.onClick.AddListener(CheckpointOnClick);                //Checkpoint system script
+		SettingsButton.onClick.AddListener(Settings);                //Checkpoint system script
 		RestartButton.onClick.AddListener(RestartOnClick);						//Restart level script
-		MainExitButton.onClick.AddListener(QuitToDesktop);						//Quit to Main Menu
-		DesktopExitButton.onClick.AddListener(QuitToDesktop);                   //Quit to Desktop Script
+		MainExitButton.onClick.AddListener(QuitToMainMenu);						//Quit to Main Menu
 
-		QuitYesButton.onClick.AddListener(QuitDesktopYesOnClick);              //Quit - Yes Script
-		QuitNoButton.onClick.AddListener(QuitDesktopNoOnClick);                //Quit - No Script
+        QuitYesButton.onClick.AddListener(QuitMainMenuYesOnClick);              //Quit - Yes Script
+        QuitNoButton.onClick.AddListener(QuitMainMenuNoOnClick);
 	}
 		
 	// Update is called once per frame
@@ -63,7 +59,7 @@ public class Pause_Menu : MonoBehaviour {
 		if (Pause_Screen.gameObject.activeInHierarchy == false) 
 		{
 			Pause_Screen.SetActive (true);				//Set pause_screen to visible
-			Exit_Prompt_Menu.SetActive (false);	//Set quit_menu to invisible
+			Exit_Prompt_Menu.SetActive (false);	        //Set quit_menu to invisible
 			Resume_Game.Select();
 			player.GetComponent<PlayerGamepad> ().enabled = false;
 
@@ -83,9 +79,9 @@ public class Pause_Menu : MonoBehaviour {
 	}
 
 	//Should take players back to the last encountered checkpoint once selected
-	void CheckpointOnClick()
+	void Settings()
 	{
-		Time.timeScale = 1;
+		
 	}
 
 	//Restarts level from beginning once selected
@@ -102,9 +98,9 @@ public class Pause_Menu : MonoBehaviour {
 	void QuitToMainMenu()
 	{
 		/* This will make the Quit_Menu appear */
-		Exit_Prompt_Menu.SetActive(true);			//Sets quit_menu to become visible
-		PMenu.SetActive(false);						//Sets pause_menu to become invisible
-		quit_no_Button.Select ();					//Sets the focus of the cursor to Quit's "No" button
+		Exit_Prompt_Menu.SetActive(true);//Sets quit_menu to become visible
+        PMenu.SetActive(false);                     //Sets pause_menu to become invisible
+        quit_no_Button.Select ();					//Sets the focus of the cursor to Quit's "No" button
 	}
 		
 	void QuitMainMenuYesOnClick()
@@ -118,29 +114,7 @@ public class Pause_Menu : MonoBehaviour {
 		/* This will make the game Quit menu disappear */
 		Exit_Prompt_Menu.SetActive(false);			//Sets quit_menu to become invisible
 		PMenu.SetActive(true);						//Sets pause_menu to become visible
-		To_Desktop.Select ();						//Sets the focus of the cursor to "Exit" button
+		To_MainMenu.Select ();						//Sets the focus of the cursor to "Exit" button
 	}
-
-	/* This function will allow the player to click on the Quit button and will create a confirmation prompt */
-	void QuitToDesktop()
-	{
-		/* This will make the Quit_Menu appear */
-		Exit_Prompt_Menu.SetActive(true);			//Sets quit_menu to become visible
-		PMenu.SetActive(false);						//Sets pause_menu to become invisible
-		quit_no_Button.Select ();					//Sets the focus of the cursor to Quit's "No" button
-	}
-
-	void QuitDesktopYesOnClick()
-	{
-		/* This will make the game Quit out */
-		Application.Quit ();
-	}
-
-	void QuitDesktopNoOnClick()
-	{
-		/* This will make the game Quit menu disappear */
-		Exit_Prompt_Menu.SetActive(false);			//Sets quit_menu to become invisible
-		PMenu.SetActive(true);						//Sets pause_menu to become visible
-		To_Desktop.Select ();						//Sets the focus of the cursor to "Exit" button
-	}
+    
 }
