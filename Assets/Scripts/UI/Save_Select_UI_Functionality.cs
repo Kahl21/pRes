@@ -1,4 +1,4 @@
-﻿//This script was written by Tony Alessio | Last edited by Tony Alessio | Modified on Sep 14, 2017
+﻿//This script was written by Tony Alessio | Last edited by Kyle Partlow | Modified on Nov 16, 2017
 /*
 SCRIPT DESCRIPTION
 	The functionality of this script is to get the UI representation of the button linked with
@@ -72,9 +72,11 @@ public class Save_Select_UI_Functionality : MonoBehaviour {
 	void SaveSlotOnClick(int SaveSlotNumber)
 	{
 		//Main_Menu_Functionality.Singleton_Main_Menu_Functionality.save_select_menu_obj.SetActive(false);	//Sets Save_Menu to become invisible
-		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.play_menu_obj.SetActive(true);			//Sets Play_Menu to become visible
-		//Main_Menu_Functionality.Singleton_Main_Menu_Functionality.StoryButton.Select();						//Sets the Story button as the active cursor
-		Debug.Log(SaveLoad.S.GetFileName (SaveSlotNumber));
+		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.play_menu_obj.SetActive(true);            //Sets Play_Menu to become visible
+        Main_Menu_Functionality.Singleton_Main_Menu_Functionality.save_select_menu_obj.SetActive(false);
+        Main_Menu_Functionality.Singleton_Main_Menu_Functionality.StoryButton.Select();
+        //Main_Menu_Functionality.Singleton_Main_Menu_Functionality.StoryButton.Select();						//Sets the Story button as the active cursor
+        Debug.Log(SaveLoad.S.GetFileName (SaveSlotNumber));
 		SaveLoad.S.LoadSaveFile (SaveLoad.S.GetFileName (SaveSlotNumber));
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

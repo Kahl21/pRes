@@ -1,4 +1,4 @@
-//This script was written by Tony Alessio | Last edited by Tony Alessio | Modified on Sep 14, 2017
+//This script was written by Tony Alessio | Last edited by Kyle Partlow | Modified on Nov 16, 2017
 /*
 SCRIPT DESCRIPTION
 	The functionality of this script is to get the UI representation of the button linked with
@@ -33,8 +33,10 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Main_Menu_Functionality : MonoBehaviour {
-	//Member Variables
-	/* This section will allow UI elements to be dragged and dropped in the inspector to assign UI elements to functions */
+    //Member Variables
+    /* This section will allow UI elements to be dragged and dropped in the inspector to assign UI elements to functions */
+
+    public GameObject Title_obj;
 
 	[Tooltip("Drag and drop the 'Start_Menu' UI element into this field")]
 	//This gameobject will be used to hold the Start_Menu canvas object so that it can be turned on and off

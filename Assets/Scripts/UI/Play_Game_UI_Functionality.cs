@@ -1,4 +1,4 @@
-//This script was written by Tony Alessio | Last edited by Tony Alessio | Modified on Sep 14, 2017
+//This script was written by Tony Alessio | Last edited by Kyle Partlow | Modified on Nov 16, 2017
 /*
 SCRIPT DESCRIPTION
 	The functionality of this script is to get the UI representation of the button linked with
@@ -55,8 +55,9 @@ public class Play_Game_UI_Functionality : MonoBehaviour {
 	/* This function will allow the player to click on the Story button and move to the "story_mode" scene */
 	void StoryOnClick()
 	{
-		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.play_menu_obj.SetActive(false);			//Sets Play_Menu to become invisible
-		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.level_select_menu_obj.SetActive(true);	//Sets level_select_menu to become visible
+		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.play_menu_obj.SetActive(false);   //Sets Play_Menu to become invisible
+        Main_Menu_Functionality.Singleton_Main_Menu_Functionality.Title_obj.SetActive(false);
+        Main_Menu_Functionality.Singleton_Main_Menu_Functionality.level_select_menu_obj.SetActive(true);	//Sets level_select_menu to become visible
 		Main_Menu_Functionality.Singleton_Main_Menu_Functionality.Level1Button.Select();					//Sets the Level1 button as the active cursor
 
 		/* This is where we will need to set a variable to dictate that it is Story Mode, as opposed to Speed Run Mode */
